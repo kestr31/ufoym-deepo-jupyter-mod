@@ -1,12 +1,17 @@
 # ufoym/deepo Jupyter Mod
 
-## 기본정보
+## 개요
 
-- 본 저장소는 [ufoym/deepo](https://hub.docker.com/r/ufoym/deepo) 도커 이미지를 기반의, 서버 환경에서 Jupyter Lab을 활용할 수 있도록 사전 설정을 수행한 도커 이미지 생성을 위한 저장소이다.
+- 서버 환경에서 Jupyter Lab을 활용할 수 있도록 사전 설정을 수행한 도커 이미지 생성을 위한 저장소
+- [ufoym/deepo](https://hub.docker.com/r/ufoym/deepo) 이미지 기반
+<br/>
 
-- 기본 ufoym/deepo에도 Jupyter가 명시된 Tag를 가진 이미지의 경우 Jupyter Lab 실행을 위한 준비가 갖춰져 있지만, 컨테이너를 실행한 뒤 별도의 설정은 진행하거나 컨테이너 생성 시 별도의 CMD 명령어를 부여해야 하는 불편함이 있다. 또한 Jupyter Lab Extension이 전혀 설치되어 있지 않기 때문에 생산성 측면에서의 손해 역시 존재했기에 본 이미지를 제작했다.
+- ufoym/deepo에도 Jupyter가 명시된 Tag를 가진 이미지의 경우 Jupyter Lab 실행을 위한 준비가 갖춰져 있다
+- 그러나 별도의 설정을 진행하거나 컨테이너 생성 시 별도의 CMD 명령어를 부여해야 하는 불편함이 존재
+- 또한 Jupyter Lab Extension이 전혀 설치되어 있지 않아 사용자 편의성이 떨어짐
+- 본 도커 이미지는 그러한 단점을 보완하고자 함
 
-본 도커 이미지의 특징은 다음과 같다
+## 개선사항
 
 - Dockerfile CMD 설정을 통한 컨테이너 생성시 Jupyter Lab 자동실행
 - jupyter_lab_config.py 사전설정
