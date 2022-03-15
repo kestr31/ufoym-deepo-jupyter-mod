@@ -25,15 +25,16 @@ RUN apt-get update && apt-get -y --quiet install \
 
 # Install Jupyterlab extensions
 RUN mkdir -p ~/.jupyter/lab/workspaces \
-	&& pip3 install jupyterlab-lsp \
+	&& pip3 install ipympl \
+	&& pip3 install ipywidgets \
+	&& pip3 install aquirdturtle_collapsible_headings \
+	&& pip3 install jupyterlab-drawio \
 	&& pip3 install --upgrade jupyterlab-git \
+	&& pip3 install jupyterlab_latex \
+	&& pip3 install jupyterlab-lsp \
 	&& pip3 install jupyterlab-system-monitor \
 	&& pip3 install lckr-jupyterlab-variableinspector \
 	&& pip3 install jupyterlab_latex \
-	&& pip3 install aquirdturtle_collapsible_headings \
-	&& pip3 install jupyterlab-drawio \
-	&& pip3 install ipympl \
-	&& pip3 install ipywidgets \
 	&& jupyter labextension install jupyterlab-spreadsheet \
 	&& jupyter labextension install @krassowski/jupyterlab_go_to_definition
 
