@@ -30,10 +30,10 @@
 
 ## 기본 실행
 
-### 빌드 후 사용
+### 직접 빌드
 
-- 본 저장소를 clone한 뒤 다음 명령어를 통해 빌드를 수행한다
-- 이미지명과 태그명은 식별이 가능하도록 사용자 임의로 결정한다
+- 본 저장소를 clone한 뒤 다음 명령어를 통해 빌드를 수행
+- 이미지명과 태그명은 식별이 가능하도록 사용자 임의로 결정
 
 ```shell
 docker build --no-cache -t <image_name>:<tag> .
@@ -48,6 +48,24 @@ docker run -d --gpus all \
     -v /root/.jupyter/lab/workspaces:<absolute_user_directory> \
     --name jupyter_test \
     jupyter:test
+```
+
+|설정값|설명|비고|예시|
+|:-|:-|:-|:-|
+|<user_port>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|10001|
+|<absolute_user_directory>|Jupyter Lab 작업 공간|절대경로로 설정할 것|/home/foo/bar/jupyter|
+
+### 저장소 다운로드
+
+- 미리 빌드된 이미지 [kestr3l/deepo-jupyter-mod](https://hub.docker.com/r/kestr3l/deepo-jupyter-mod)를 받아 실행하는 방법
+- 다음 명령어를 통해 실행
+
+```shell
+docker run -d --gpus all \
+    -p <user_port>:8888 \
+    -v /root/.jupyter/lab/workspaces:<absolute_user_directory> \
+    --name jupyter_test \
+    kestr3l/deepo-jupyter-mod:1.0.0
 ```
 
 |설정값|설명|비고|예시|
