@@ -50,7 +50,7 @@ docker run -d --gpus all \
     jupyter:test
 ```
 
-|설정값|설명|비고|
-|:-|:-|:-|
-|<user_port>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|
-|<absolute_user_directory>|Jupyter Lab 작업 공간|절대경로로 설정할 것|
+|설정값|설명|비고|예시|
+|:-|:-|:-|:-|
+|<user_port>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|10001|
+|<absolute_user_directory>|Jupyter Lab 작업 공간|절대경로로 설정할 것|/home/foo/bar/jupyter|
