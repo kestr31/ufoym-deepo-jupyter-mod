@@ -10,7 +10,7 @@
 
 ## 개선사항
 
-- Dockerfile CMD 설정을 통한 컨테이너 생성시 Jupyter Lab 자동실행
+- Dockerfile CMD 설정을 통해 컨테이너 생성시 Jupyter Lab 자동실행
 - jupyter_lab_config.py 사전설정
   - localhost 외 IP 접속 가능
   - 터미널 기본 쉘을 bash로 설정
