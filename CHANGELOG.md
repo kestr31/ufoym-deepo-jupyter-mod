@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [1.0] - 2022-03-16
+## [1.0.0] - 2022-03-16
  
 - 저장소 생성
 - ufoym/deepo:all-jupyter-cu113
