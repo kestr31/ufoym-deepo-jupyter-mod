@@ -45,8 +45,8 @@ docker build --no-cache -t <image_name>:<tag> .
 ```shell
 docker run -d --gpus all \
     -p <user_port>:8888 \
-    -v /root/.jupyter/lab/workspaces:<absolute_user_directory> \
-    --name jupyter_test \
+    -v <absolute_user_directory>:/root/.jupyter/lab/workspaces \
+    --name <preferred_name> \
     jupyter:test
 ```
 
@@ -63,8 +63,8 @@ docker run -d --gpus all \
 ```shell
 docker run -d --gpus all \
     -p <user_port>:8888 \
-    -v /root/.jupyter/lab/workspaces:<absolute_user_directory> \
-    --name jupyter_test \
+    -v <absolute_user_directory>:/root/.jupyter/lab/workspaces \
+    --name <preferred_name> \
     kestr3l/deepo-jupyter-mod:1.0.0
 ```
 
