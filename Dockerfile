@@ -42,6 +42,6 @@ COPY /config/jupyter_lab_config.py /root/.jupyter/jupyter_lab_config.py
 
 WORKDIR /root/.jupyter/lab/workspaces
 
-COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY config/entrypoint.sh /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["jupyter", "lab", "--config=/root/.jupyter/jupyter_lab_config.py"]
