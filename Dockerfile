@@ -23,13 +23,6 @@ RUN apt-get update && apt-get -y --quiet install \
 	&& apt-get clean autoclean \
 	&& rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
 
-WORKDIR /root/.jupyter
-
-# Generate SSL Certificate Valid for 730 Days
-RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
-	-subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com" \
-	-keyout jupyter.key -out jupyter.cert
-
 # Install Jupyterlab extensions
 RUN mkdir -p ~/.jupyter/lab/workspaces \
 	&& pip3 install ipympl \
@@ -49,4 +42,6 @@ COPY /config/jupyter_lab_config.py /root/.jupyter/jupyter_lab_config.py
 
 WORKDIR /root/.jupyter/lab/workspaces
 
+COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["jupyter", "lab", "--config=/root/.jupyter/jupyter_lab_config.py"]
