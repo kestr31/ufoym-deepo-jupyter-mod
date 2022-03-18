@@ -11,6 +11,6 @@ c.ServerApp.root_dir = '/root/.jupyter/lab/workspaces'
 
 c.ServerApp.password_required = False
 c.ServerApp.token = ''
-c.ServerApp.password = ''
-#c.ServerApp.certfile = u'/root/.jupyter/jupyter.pem'
-#c.ServerApp.keyfile = u'/root/.jupyter/jupyter.key'
+#c.ServerApp.password = ''
+c.ServerApp.certfile = u'/root/.jupyter/jupyter.pem'
+c.ServerApp.keyfile = u'/root/.jupyter/jupyter.key'
