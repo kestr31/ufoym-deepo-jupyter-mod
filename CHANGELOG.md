@@ -23,7 +23,23 @@
   - [jupyterlab-system-monitor](https://github.com/jtpio/jupyterlab-system-monitor)
   - [lckr-jupyterlab-variableinspector](https://github.com/lckr/jupyterlab-variableInspector)
   - [@krassowski/jupyterlab_go_to_definition](https://github.com/krassowski/jupyterlab-go-to-definition)
-
-### 변경사항
  
 ### 수정사항
+
+## [1.1.0] - 2022-03-18
+ 
+- 주요 업데이트
+- ufoym/deepo:all-jupyter-cu113
+- Jupyter Lab 3.3.1
+- Python 3.8.10 
+ 
+### 추가사항
+
+- SSL 인증서 기본 적용
+  - 자가서명 인증서, 730일동안 유효
+  - /root/.jupyter 경로에 위치
+
+### 수정사항
+
+- Jupyter Lab이 도커 CMD로 실행되는 것이 아닌 ENTRYPOINT로 실행됨
+- 더이상 non-TLS (http)로 접속이 불가능함
