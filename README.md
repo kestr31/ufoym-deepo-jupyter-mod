@@ -40,14 +40,14 @@ docker build --no-cache -t <image_name>:<tag> .
 ```
 
 - 이후 다음 명령어를 통해 컨테이너 이미지를 생성한다
-- 실행 이후 http://서버_IP:user_port로 접속하면 Jupyter Lab이 실행된다
+- 실행 이후 https://서버_IP:user_port로 접속하면 Jupyter Lab이 실행된다
 
 ```shell
 docker run -d --gpus all \
     -p <user_port>:8888 \
-    -v <absolute_user_directory>:/root/.jupyter/lab/workspaces \
+    -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
-    jupyter:test
+    <image_name>:<tag>
 ```
 
 |설정값|설명|비고|예시|
@@ -63,12 +63,80 @@ docker run -d --gpus all \
 ```shell
 docker run -d --gpus all \
     -p <user_port>:8888 \
-    -v <absolute_user_directory>:/root/.jupyter/lab/workspaces \
+    -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
-    kestr3l/deepo-jupyter-mod:1.0.0
+    kestr3l/deepo-jupyter-mod:1.1.0
 ```
 
 |설정값|설명|비고|예시|
 |:-|:-|:-|:-|
 |<user_port>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|10001|
 |<absolute_user_directory>|Jupyter Lab 작업 공간|절대경로로 설정할 것|/home/foo/bar/jupyter|
+
+## 로그인 비밀번호 설정
+
+- 단순 실행과는 실행 절차가 조금 다르다
+- 먼저 다음 명령어를 통해 bash 창으로 컨테이너를 실행한다
+
+```shell
+docker run -d --rm \
+  --name jupyter_pass \
+  kestr3l/deepo-jupyter-mod:1.1.0
+```
+
+- 이어서 컨테이너 내부의 터미널 창으로 접속한다
+
+```shell
+docker exec -it jupyter_pass bash
+```
+
+- 해당 터미널에서 다음 명령어를 실행해 비밀번호 Hash 값을 확인한다
+  - 명령어 입력 직후 나타나는 입력 창에 직접 입력하도록 한다
+  - `passwd()` 내부에 문자열을 넣어 결과를 바로 확인하는 것은 보안상 매우 권장하지 않는다
+- 입력해 나오는 결과를 복사해 기록해둔다
+
+```shell
+python3 -c "from notebook.auth import passwd;print(passwd())"
+```
+
+- `exit`을 입력해 호스트 터미널로 나온 뒤 컨테이너를 중지해 삭제한다
+
+```shell
+docker stop jupyter_pass
+```
+
+- 본 저장소의 /config 폴더 내의 jupyter_lab_config.py를 복사해 식별할 수 있는 경로에 저장한다
+- 그 뒤 그 내용을 아래와 같이 수정한다
+  - c.ServerApp.password_required를 True로 수정
+  - c.ServerApp.token 주석처리
+  - c.ServerApp.password 주석해제 후 전 단계에서 기록한 문자열 입력
+
+```python
+c = get_config()
+
+c.ServerApp.allow_origin = '*'
+c.ServerApp.ip = '*'
+c.ServerApp.port = 8888
+c.ServerApp.terminado_settings={'shell_command': ['/bin/bash']}
+
+c.ServerApp.open_browser = False
+c.ServerApp.allow_root = True
+c.ServerApp.root_dir = '/root/.jupyter/lab/workspaces'
+
+c.ServerApp.password_required = True
+#c.ServerApp.token = ''
+c.ServerApp.password = '방금_복사한_문자열'
+c.ServerApp.certfile = u'/root/.jupyter/jupyter.pem'
+c.ServerApp.keyfile = u'/root/.jupyter/jupyter.key'
+```
+
+- 마지막으로 다음 명령어를 통해 실행 시 비밀번호 입력이 적용된다
+
+```
+docker run -d --gpus all \
+    -p <user_port>:8888 \
+    -v <absolute_directory_to_jupyter_lab_config.py>:/root/.jupyter/jupyter_lab_config.py \
+    -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
+    --name <preferred_name> \
+    kestr3l/deepo-jupyter-mod:1.1.0
+```
