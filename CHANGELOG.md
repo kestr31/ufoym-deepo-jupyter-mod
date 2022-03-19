@@ -58,4 +58,4 @@
 - 더이상 ufoym/Deepo 이미지에 의존하지 않음
   - Deepo가 CUDA 11.2 이미지 태그를 제공하지 않기 때문
   - 이제 nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04 기반으로, Deepo의 적용사항들을 적용함
-- CUDA 11.2 서버에서 CUDA가 정삭적으로 작동함
+- CUDA 11.2 서버에서 CUDA가 정상적으로 작동함
