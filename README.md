@@ -40,11 +40,12 @@ docker build --no-cache -t <image_name>:<tag> .
 ```
 
 - 이후 다음 명령어를 통해 컨테이너 이미지를 생성한다
-- 실행 이후 https://서버_IP:user_port로 접속하면 Jupyter Lab이 실행된다
+- 실행 이후 https://서버_IP:user_port_1로 접속하면 Jupyter Lab이 실행된다
 
 ```shell
 docker run -d --gpus all \
-    -p <user_port>:8888 \
+    -p <user_port_1>:8888 \
+    -p <user_port_2>:6006 \
     -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
     <image_name>:<tag>
@@ -52,7 +53,8 @@ docker run -d --gpus all \
 
 |설정값|설명|비고|예시|
 |:-|:-|:-|:-|
-|<user_port>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|10001|
+|<user_port_1>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|10001|
+|<user_port_2>|Tensorboard 에 접속할 포트 (별도실행 필요)|10000번대 이상을 권장|10002|
 |<absolute_user_directory>|Jupyter Lab 작업 공간|절대경로로 설정할 것|/home/foo/bar/jupyter|
 
 ### 저장소 다운로드
@@ -62,7 +64,8 @@ docker run -d --gpus all \
 
 ```shell
 docker run -d --gpus all \
-    -p <user_port>:8888 \
+    -p <user_port_1>:8888 \
+    -p <user_port_2>:6006 \
     -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
     kestr3l/deepo-jupyter-mod:1.2.0
@@ -71,9 +74,10 @@ docker run -d --gpus all \
 |설정값|설명|비고|예시|
 |:-|:-|:-|:-|
 |<user_port>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|10001|
+|<user_port_2>|Tensorboard 에 접속할 포트 (별도실행 필요)|10000번대 이상을 권장|10002|
 |<absolute_user_directory>|Jupyter Lab 작업 공간|절대경로로 설정할 것|/home/foo/bar/jupyter|
 
-## 로그인 비밀번호 설정
+### 로그인 비밀번호 설정
 
 - 단순 실행과는 실행 절차가 조금 다르다
 - 먼저 다음 명령어를 통해 bash 창으로 컨테이너를 실행한다
@@ -140,3 +144,20 @@ docker run -d --gpus all \
     --name <preferred_name> \
     kestr3l/deepo-jupyter-mod:1.2.0
 ```
+
+### Tensorboard 사용
+
+- 컨테이너 내부의 터미널 창으로 접속한다
+
+```shell
+docker exec -it <container_name> bash
+```
+
+- Tensorboard는 별도로 실행해야 접속이 가능하다
+- Workspace 내부에 Tensorboard 로그 데이터 저장을 위한 경로를 생성한 뒤 다음 명령어로 Tensorboard를 실행한다
+
+```shell
+tensorboard --logdir=<path_to_log_directory> --host=0.0.0.0
+```
+
+- 실행 이후 http://서버_IP:user_port_1로 접속하면 Tensorboard가 실행된다
