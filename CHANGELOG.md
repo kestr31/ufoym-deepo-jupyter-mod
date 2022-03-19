@@ -43,3 +43,19 @@
 
 - Jupyter Lab이 도커 CMD로 실행되는 것이 아닌 ENTRYPOINT로 실행됨
 - 더이상 non-TLS (http)로 접속이 불가능함
+
+## [1.2.0] - 2022-03-19
+ 
+- 주요 업데이트
+- nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04
+- Jupyter Lab 3.3.2
+- Python 3.8.10 
+ 
+### 추가사항
+
+### 수정사항
+
+- 더이상 ufoym/Deepo 이미지에 의존하지 않음
+  - Deepo가 CUDA 11.2 이미지 태그를 제공하지 않기 때문
+  - 이제 nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04 기반으로, Deepo의 적용사항들을 적용함
+- CUDA 11.2 서버에서 CUDA가 정삭적으로 작동함
