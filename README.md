@@ -65,7 +65,7 @@ docker run -d --gpus all \
     -p <user_port>:8888 \
     -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
-    kestr3l/deepo-jupyter-mod:1.1.0
+    kestr3l/deepo-jupyter-mod:1.2.0
 ```
 
 |설정값|설명|비고|예시|
@@ -81,7 +81,7 @@ docker run -d --gpus all \
 ```shell
 docker run -d --rm \
   --name jupyter_pass \
-  kestr3l/deepo-jupyter-mod:1.1.0
+  kestr3l/deepo-jupyter-mod:1.2.0
 ```
 
 - 이어서 컨테이너 내부의 터미널 창으로 접속한다
@@ -138,5 +138,5 @@ docker run -d --gpus all \
     -v <absolute_directory_to_jupyter_lab_config.py>:/root/.jupyter/jupyter_lab_config.py \
     -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
-    kestr3l/deepo-jupyter-mod:1.1.0
+    kestr3l/deepo-jupyter-mod:1.2.0
 ```
