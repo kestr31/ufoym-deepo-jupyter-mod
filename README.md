@@ -2,20 +2,19 @@
 
 ## 개요
 
-- 서버 환경에서 Jupyter Lab을 활용할 수 있도록 사전 설정을 수행한 [ufoym/deepo](https://hub.docker.com/r/ufoym/deepo) 기반 도커 이미지 생성을 위한 저장소
-- ufoym/deepo도 Jupyter가 명시된 Tag를 가진 이미지의 경우 Jupyter Lab을 포함함
-- 그러나 별도의 설정을 진행하거나 컨테이너 생성 시 별도의 CMD 명령어를 부여해야 하는 불편함이 존재
-- 또한 Jupyter Lab Extension이 전혀 설치되어 있지 않아 사용자 편의성이 떨어짐
-- 본 도커 이미지는 그러한 단점을 보완하고자 함
+- 서버 환경에서 Jupyter Lab을 활용할 수 있도록 사전 설정을 수행한 [nvidia/cuda](https://hub.docker.com/r/nvidia/cuda) 기반 도커 이미지 생성을 위한 저장소
+- 또한 Jupyter Lab Extension을 포함하고 서버에 맞게 CUDA 버전을 변경해 빌드할 수 있도록 구성됨
+- 기본 CUDA 버전은 11.2.2
 
 ## 개선사항
 
+- ufoym/deepo에서 제공하지 않는 Tag의 CUDA를 사용할 수 있음
 - Dockerfile CMD 설정을 통해 컨테이너 생성시 Jupyter Lab 자동실행
 - jupyter_lab_config.py 사전설정
   - localhost 외 IP 접속 가능
   - 터미널 기본 쉘을 bash로 설정
   - 추후 인증 및 SSL 적용을 위한 고려
-- Jupyter Lab 3.x과 호환되는 Extension 사전설치
+- Jupyter Lab 3.x와 호환되는 Extension 사전설치
   - [ipympl](https://github.com/matplotlib/ipympl)
   - [ipywidgets](https://github.com/jupyter-widgets/ipywidgets)
   - [aquirdturtle_collapsible_headings](https://github.com/aquirdTurtle/Collapsible_Headings)
