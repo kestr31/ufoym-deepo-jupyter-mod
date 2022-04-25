@@ -71,6 +71,6 @@
 
 ### 수정사항
 
--  기본 `jupyter_lab_config.py`의 표기 오류로 인한 실행 불가 문제 해결
+- 기본 `jupyter_lab_config.py`의 표기 오류로 인한 실행 불가 문제 해결
   - 인증서 `certfile`이 `.pem`으로 잘못 기재된 문제 해결
-- `CHANGELOG.md` 가독성 개선  
+- `CHANGELOG.md` 가독성 개선
