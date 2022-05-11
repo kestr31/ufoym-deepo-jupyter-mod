@@ -67,7 +67,7 @@ docker run -d --gpus all \
     -p <user_port_2>:6006 \
     -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
-    kestr3l/deepo-jupyter-mod:1.2.0
+    kestr3l/deepo-jupyter-mod:latest
 ```
 
 |설정값|설명|비고|예시|
@@ -84,7 +84,7 @@ docker run -d --gpus all \
 ```shell
 docker run -d --rm \
   --name jupyter_pass \
-  kestr3l/deepo-jupyter-mod:1.2.0
+  kestr3l/deepo-jupyter-mod:latest
 ```
 
 - 이어서 컨테이너 내부의 터미널 창으로 접속한다
@@ -129,7 +129,7 @@ c.ServerApp.root_dir = '/root/.jupyter/lab/workspaces'
 c.ServerApp.password_required = True
 #c.ServerApp.token = ''
 c.ServerApp.password = '방금_복사한_문자열'
-c.ServerApp.certfile = u'/root/.jupyter/jupyter.pem'
+c.ServerApp.certfile = u'/root/.jupyter/jupyter.cert'
 c.ServerApp.keyfile = u'/root/.jupyter/jupyter.key'
 ```
 
@@ -141,7 +141,7 @@ docker run -d --gpus all \
     -v <absolute_directory_to_jupyter_lab_config.py>:/root/.jupyter/jupyter_lab_config.py \
     -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
-    kestr3l/deepo-jupyter-mod:1.2.0
+    kestr3l/deepo-jupyter-mod:1.3.0
 ```
 
 ### Tensorboard 사용
