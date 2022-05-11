@@ -74,3 +74,16 @@
 - 기본 `jupyter_lab_config.py`의 표기 오류로 인한 실행 불가 문제 해결
   - 인증서 `certfile`이 `.pem`으로 잘못 기재된 문제 해결
 - `CHANGELOG.md` 가독성 개선
+
+## [1.3.0] - 2022-05-11
+
+- 주요 업데이트
+- nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
+- Jupyter Lab 3.3.2
+- Python 3.8.10
+
+### 추가사항
+
+### 수정사항
+
+- CUDA 11.3 사용을 위한 기반 이미지 변경
