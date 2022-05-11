@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
 
 COPY /scripts/docker-clean /etc/apt/apt.conf.d/docker-clean
 COPY /scripts/sources.list /etc/apt/sources.list
