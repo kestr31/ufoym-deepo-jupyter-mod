@@ -87,3 +87,19 @@
 ### 수정사항
 
 - CUDA 11.3 사용을 위한 기반 이미지 변경
+
+## [1.4.0] - 2022-07-05
+
+- 주요 업데이트
+- nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
+- Jupyter Lab 3.3.2
+- Python 3.8.10
+
+### 추가사항
+
+- Added support for SSH connection (port 22)
+  - Use it after setting root account's password
+
+### 수정사항
+
+- Modified README.md about build method & SSH connection

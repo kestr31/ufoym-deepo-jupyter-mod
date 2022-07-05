@@ -35,7 +35,7 @@
 - 이미지명과 태그명은 식별이 가능하도록 사용자 임의로 결정
 
 ```shell
-docker build --no-cache -t <image_name>:<tag> .
+DOCKER_BUILDKIT=1 docker build --no-cache -t <image_name>:<tag> .
 ```
 
 - 이후 다음 명령어를 통해 컨테이너 이미지를 생성한다
