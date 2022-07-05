@@ -23,6 +23,7 @@ RUN apt-get update && apt-get -y --quiet install \
 		git \
 		vim \
 		libssl-dev \
+		openssh-server \
 		curl \
 		unzip \
 		unrar \
@@ -123,6 +124,7 @@ RUN mkdir -p ~/.jupyter/lab/workspaces \
 	&& jupyter labextension install @krassowski/jupyterlab_go_to_definition
 
 COPY /config/jupyter_lab_config.py /root/.jupyter/jupyter_lab_config.py
+COPY /config/sshd_config /etc/ssh/sshd_config
 
 WORKDIR /root/.jupyter/lab/workspaces
 
