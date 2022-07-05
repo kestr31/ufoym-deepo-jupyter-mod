@@ -97,9 +97,9 @@
 
 ### 추가사항
 
-- Added support for SSH connection (port 22)
-  - Use it after setting root account's password
+- SSH 접속 지원 (포트 22)
+  - 루트 계정의 비밀번호를 설정한 뒤 접속할 것.
 
 ### 수정사항
 
-- Modified README.md about build method & SSH connection
+- README.md에 수정된 빌드 방법과 SSH 접속에 대한 내용을 추가.

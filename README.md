@@ -14,6 +14,7 @@
   - localhost 외 IP 접속 가능
   - 터미널 기본 쉘을 bash로 설정
   - 추후 인증 및 SSL 적용을 위한 고려
+- SSH 접속 지원을 통한 활용성 개선 (디버깅 등)
 - Jupyter Lab 3.x와 호환되는 Extension 사전설치
   - [ipympl](https://github.com/matplotlib/ipympl)
   - [ipywidgets](https://github.com/jupyter-widgets/ipywidgets)
@@ -45,6 +46,7 @@ DOCKER_BUILDKIT=1 docker build --no-cache -t <image_name>:<tag> .
 docker run -d --gpus all \
     -p <user_port_1>:8888 \
     -p <user_port_2>:6006 \
+    -p <user_port_3>:22 \
     -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
     <image_name>:<tag>
@@ -54,6 +56,7 @@ docker run -d --gpus all \
 |:-|:-|:-|:-|
 |<user_port_1>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|10001|
 |<user_port_2>|Tensorboard 에 접속할 포트 (별도실행 필요)|10000번대 이상을 권장|10002|
+|<user_port_3>|SSH로 접속할 포트 (별도실행 필요)|10000번대 이상을 권장|10002|
 |<absolute_user_directory>|Jupyter Lab 작업 공간|절대경로로 설정할 것|/home/foo/bar/jupyter|
 
 ### 저장소 다운로드
@@ -65,6 +68,7 @@ docker run -d --gpus all \
 docker run -d --gpus all \
     -p <user_port_1>:8888 \
     -p <user_port_2>:6006 \
+    -p <user_port_3>:22 \
     -v <absolute_user_directory_to_workspace>:/root/.jupyter/lab/workspaces \
     --name <preferred_name> \
     kestr3l/deepo-jupyter-mod:latest
@@ -74,6 +78,7 @@ docker run -d --gpus all \
 |:-|:-|:-|:-|
 |<user_port>|Jupyter Lab 에 접속할 포트|10000번대 이상을 권장|10001|
 |<user_port_2>|Tensorboard 에 접속할 포트 (별도실행 필요)|10000번대 이상을 권장|10002|
+|<user_port_3>|SSH로 접속할 포트 (별도실행 필요)|10000번대 이상을 권장|10002|
 |<absolute_user_directory>|Jupyter Lab 작업 공간|절대경로로 설정할 것|/home/foo/bar/jupyter|
 
 ### 로그인 비밀번호 설정
@@ -143,6 +148,9 @@ docker run -d --gpus all \
     --name <preferred_name> \
     kestr3l/deepo-jupyter-mod:1.3.0
 ```
+
+- SSH 접속을 설정하고 싶다면 `docker exec -it <preferred_name> bash`를 통해 접속해 `root` 계정 비밀번호를 설정한다.
+- 비밀번호 설정 명령어는 `passwd`이다.
 
 ### Tensorboard 사용
 
