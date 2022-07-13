@@ -31,6 +31,15 @@ RUN apt-get update && apt-get -y --quiet install \
         && apt-get clean autoclean \
         && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
 
+# Darknet
+RUN git clone --depth 10 https://github.com/AlexeyAB/darknet ~/darknet \
+	&& cd ~/darknet \
+	&& sed -i 's/GPU=0/GPU=1/g' ~/darknet/Makefile \
+	&& sed -i 's/CUDNN=0/CUDNN=1/g' ~/darknet/Makefile \
+	&& make -j"$(nproc)" \
+	&& cp ~/darknet/include/* /usr/local/include \
+	&& cp ~/darknet/darknet /usr/local/bin
+
 # Python, Chainer, Jupyter
 RUN apt-get update && apt-get -y --quiet install \
 		python3.8 \
@@ -52,6 +61,23 @@ RUN apt-get update && apt-get -y --quiet install \
 		chainer \
 		jupyter \
 		jupyterlab \
+        && apt-get -y autoremove \
+        && apt-get clean autoclean \
+        && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
+
+# Mxnet, ONNX, Paddle
+RUN apt-get update && apt-get -y --quiet install \
+		libatlas-base-dev \
+		graphviz \
+		protobuf-compiler \
+		libprotoc-dev \
+	&& python -m pip --no-cache-dir install --upgrade \
+		mxnet-cu112 \
+		graphviz \
+		protobuf \
+		onnx \
+		onnxruntime-gpu \
+		paddlepaddle-gpu \
         && apt-get -y autoremove \
         && apt-get clean autoclean \
         && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
